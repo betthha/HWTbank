@@ -23,10 +23,9 @@ public class CarService {
      * Необходимо вернуть список строк из Condition
      */
     public List<Condition> getConditions(List<Car> cars) {
-        return cars
-                .stream()
-                .map(Car::getCondition)
-                .toList();
+        return cars.stream() //
+                .map(Car::getCondition) //
+                .toList(); //
     }
 
     /**
@@ -34,9 +33,9 @@ public class CarService {
      * Необходимо вернуть только те, у которых Condition - "NEW"
      */
     public List<Car> getNewCars(List<Car> cars) {
-        return cars.stream()
-                .filter(car -> "NEW".equals(car.getCondition()))
-                .toList();
+        return cars.stream() //
+                .filter(car -> "NEW".equals(car.getCondition())) //
+                .toList(); //
     }
 
     /**
@@ -44,10 +43,9 @@ public class CarService {
      * Необходимо вернуть количество Car, у которых больше 2 Owners
      */
     public long countCarsOwners(List<Car> cars) {
-        return cars
-                .stream()
-                .filter(car -> car.getOwners().size() > 2)
-                .count();
+        return cars.stream() //
+                .filter(car -> car.getOwners().size() > 2) //
+                .count(); //
     }
 
     /**
@@ -55,9 +53,9 @@ public class CarService {
      * Необходимо каждому элементу списка в поле age прибавить 1
      */
     public List<Car> incrementCarAge(List<Car> cars) {
-        return cars.stream()
-                .peek(car -> car.setAge(car.getAge() + 1))
-                .toList();
+        return cars.stream() //
+                .peek(car -> car.setAge(car.getAge() + 1)) //
+                .toList(); //
     }
 
     /**
@@ -65,9 +63,9 @@ public class CarService {
      * Необходимо вернуть Car, у которого самое большое значение age
      */
     public Car getOldestCar(List<Car> cars) {
-        return cars.stream()
-                .max(Comparator.comparingInt(Car::getAge))
-                .orElse(null);
+        return cars.stream() //
+                .max(Comparator.comparingInt(Car::getAge)) //
+                .orElse(null); //
     }
 
     /**
@@ -76,11 +74,11 @@ public class CarService {
      * Имена не должны повторяться
      */
     public List<String> getOwnersCarsNames(List<Car> cars) {
-        return cars.stream()
-                .flatMap(car -> car.getOwners().stream())
-                .map(Owner::getName)
-                .distinct()
-                .toList();
+        return cars.stream() //
+                .flatMap(car -> car.getOwners().stream()) //
+                .map(Owner::getName) //
+                .distinct() //
+                .toList(); //
     }
 
     /**
@@ -88,9 +86,9 @@ public class CarService {
      * Необходимо преобразовать его в список CarInfo
      */
     public List<CarInfo> mapToCarInfo(List<Car> cars) {
-        return cars.stream()
-                .map(car -> new CarInfo (car.getName(), car.getAge(), car.getOwners().size()))
-                .toList();
+        return cars.stream() //
+                .map(car -> new CarInfo (car.getName(), car.getAge(), car.getOwners().size())) //
+                .toList(); //
     }
 
     /**
@@ -98,9 +96,9 @@ public class CarService {
      * Необходимо вернуть не более двух машин, у которых Condition - BROKEN
      */
     public List<Car> getTwoBrokenCar(List<Car> cars) {
-        return cars.stream().filter(car -> "BROKEN".equals(car.getCondition()))
-                .limit(2)
-                .toList();
+        return cars.stream().filter(car -> "BROKEN".equals(car.getCondition())) //
+                .limit(2) //
+                .toList(); //
     }
 
     /**
@@ -108,9 +106,9 @@ public class CarService {
      * Необходимо вернуть отсортированный по полю age список Car
      */
     public List<Car> getSortedCarsByAge(List<Car> cars) {
-        return cars.stream()
-                .sorted(Comparator.comparingInt(Car::getAge))
-                .toList();
+        return cars.stream() //
+                .sorted(Comparator.comparingInt(Car::getAge)) //
+                .toList(); //
     }
 
     /**
@@ -118,10 +116,10 @@ public class CarService {
      * Необходимо посчитать средний возраст всех машин
      */
     public double getAvgCarsAge(List<Car> cars) {
-        return cars.stream()
-                .mapToInt(Car::getAge)
-                .average()
-                .orElse(0);
+        return cars.stream() //
+                .mapToInt(Car::getAge) //
+                .average() //
+                .orElse(0); //
     }
 
     /**
@@ -129,9 +127,9 @@ public class CarService {
      * Проверить, что все машины с Condition - "Broken" старше 10 лет
      */
     public Boolean checkBrokenCarsAge(List<Car> cars) {
-        return cars.stream()
-                .filter(car -> "Broken".equals(car.getCondition()))
-                .allMatch(car -> car.getAge() > 10);
+        return cars.stream() //
+                .filter(car -> "Broken".equals(car.getCondition())) //
+                .allMatch(car -> car.getAge() > 10); //
     }
 
     /**
@@ -139,10 +137,10 @@ public class CarService {
      * Проверить, что хотя бы у одной машины с Condition - "USED" был владелец по имени Adam
      */
     public Boolean checkCarOwnerName(List<Car> cars) {
-        return cars.stream()
-                .filter(car -> "USED".equals(car.getCondition()))
-                .flatMap(car -> car.getOwners().stream())
-                .anyMatch(owner -> "Adam".equals(owner.getName()));
+        return cars.stream() //
+                .filter(car -> "USED".equals(car.getCondition())) //
+                .flatMap(car -> car.getOwners().stream()) //
+                .anyMatch(owner -> "Adam".equals(owner.getName())); //
     }
 
     /**
@@ -150,10 +148,10 @@ public class CarService {
      * Необходимо вернуть любого Owner старше 36 лет
      */
     public Owner getAnyOwner(List<Car> cars) {
-         return cars.stream()
-                 .flatMap(car -> car.getOwners().stream())
-                 .filter(owner -> owner.getAge() > 36)
-                 .findFirst()
-                 .orElse(null);
+         return cars.stream() //
+                 .flatMap(car -> car.getOwners().stream()) //
+                 .filter(owner -> owner.getAge() > 36) //
+                 .findFirst()    //
+                 .orElse(null); //
     }
 }
