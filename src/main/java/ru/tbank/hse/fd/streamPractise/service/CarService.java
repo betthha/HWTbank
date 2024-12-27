@@ -151,9 +151,9 @@ public class CarService {
      */
     public Owner getAnyOwner(List<Car> cars) {
          return cars.stream()
-                 .flatMap(car -> car.getOwners().stream())
-                 .filter(owner -> owner.getAge() > 36)
-                 .findFirst()
-                 .orElse(null);
+                 .flatMap(car -> car.getOwners().stream()) //
+                 .filter(owner -> owner.getAge() > 36) //
+                 .findFirst()    //
+                 .orElse(null); //
     }
 }
